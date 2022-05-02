@@ -49,6 +49,8 @@ namespace SnakeGame
 
         private void FrmSnake_Load(object sender, EventArgs e)
         {
+
+            WindowState = FormWindowState.Maximized;
             pictureBox.Image = new Bitmap(600, 600);
             graphics = Graphics.FromImage(pictureBox.Image);
             for (int i = 0; i < 20; i++)
@@ -106,29 +108,37 @@ namespace SnakeGame
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    directions = Directions.Up;
+                    if(directions != Directions.Down)
+                        directions = Directions.Up;
                     break;
                 case Keys.Down:
-                    directions = Directions.Down;
+                    if(directions != Directions.Up)
+                        directions = Directions.Down;
                     break;
                 case Keys.Left:
-                    directions = Directions.Left;
+                    if(directions != Directions.Right)
+                        directions = Directions.Left;
                     break;
                 case Keys.Right:
-                    directions = Directions.Right;
+                    if(directions != Directions.Left)
+                        directions = Directions.Right;
                     break;
 
                 case Keys.Z:
-                    directions = Directions.Up;
+                    if (directions != Directions.Down)
+                        directions = Directions.Up;
                     break;
                 case Keys.S:
-                    directions = Directions.Down;
+                    if (directions != Directions.Up)
+                        directions = Directions.Down;
                     break;
                 case Keys.Q:
-                    directions = Directions.Left;
+                    if (directions != Directions.Right)
+                        directions = Directions.Left;
                     break;
                 case Keys.D:
-                    directions = Directions.Right;
+                    if (directions != Directions.Left)
+                        directions = Directions.Right;
                     break;
             }
         }

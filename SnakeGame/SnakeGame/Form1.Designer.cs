@@ -30,25 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSnake));
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox.Location = new System.Drawing.Point(26, 1);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(600, 600);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
             // 
             // timer
             // 
             this.timer.Enabled = true;
-            this.timer.Interval = 60;
             this.timer.Tick += new System.EventHandler(this.TimerTick);
             // 
             // imageList
@@ -60,16 +52,39 @@
             this.imageList.Images.SetKeyName(2, "head.png");
             this.imageList.Images.SetKeyName(3, "wall.png");
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.pictureBox1.Image = global::SnakeGame.Properties.Resources.snake_text1;
+            this.pictureBox1.Location = new System.Drawing.Point(713, 60);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(507, 170);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox.Location = new System.Drawing.Point(26, 1);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(600, 600);
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
+            // 
             // FrmSnake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 607);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1292, 670);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox);
             this.Name = "FrmSnake";
             this.Text = "SnakeGame";
             this.Load += new System.EventHandler(this.FrmSnake_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -80,6 +95,7 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ImageList imageList;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
