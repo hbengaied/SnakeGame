@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SnakeGame
 {
-    public partial class FrmSnake : Form
+    public partial class Form1 : Form
     {
         Random rand;
         enum GameFields
@@ -39,68 +39,11 @@ namespace SnakeGame
         int SnakeLenght;
         Directions directions;
         Graphics graphics;
-        public FrmSnake()
-        {
-            InitializeComponent();
-            gameFields = new GameFields[20, 20];
-            snakeCoord = new SnakeCoord[361];
-            rand = new Random();
-        }
 
-        private void FrmSnake_Load(object sender, EventArgs e)
+        public Form1()
         {
-
             WindowState = FormWindowState.Maximized;
-            pictureBox.Image = new Bitmap(600, 600);
-            graphics = Graphics.FromImage(pictureBox.Image);
-            for (int i = 0; i < 20; i++)
-            {
-                graphics.DrawImage(imageList.Images[3], i * 30, 0);
-                graphics.DrawImage(imageList.Images[3], i * 30, 570);
-            }
-
-            for (int i = 1; i < 19; i++)
-            {
-                graphics.DrawImage(imageList.Images[3], 0, i * 30);
-                graphics.DrawImage(imageList.Images[3], 570, i * 30);
-            }
-
-            snakeCoord[0].x = 10;
-            snakeCoord[0].y =10;
-            snakeCoord[1].x =10;
-            snakeCoord[1].y = 11;
-            snakeCoord[2].x =10;
-            snakeCoord[2].y = 12;
-
-            graphics.DrawImage(imageList.Images[2], snakeCoord[0].x * 30, snakeCoord[0].y * 30);
-            graphics.DrawImage(imageList.Images[0], snakeCoord[1].x * 30, snakeCoord[1].y * 30);
-            graphics.DrawImage(imageList.Images[0], snakeCoord[2].x * 30, snakeCoord[0].y * 30);
-
-            gameFields[10, 10] = GameFields.Snake;
-            gameFields[10, 11] = GameFields.Snake;
-            gameFields[10, 12] = GameFields.Snake;
-
-            directions = Directions.Up;
-            SnakeLenght = 3;
-
-            for (int i = 0; i < 4; i++)
-            {
-                Food();
-            }
-        }
-
-        private void Food()
-        {
-            int x, y;
-
-            do
-            {
-                x = rand.Next(1, 18);
-                y = rand.Next(1, 18);
-            } while (gameFields[x, y] != GameFields.Free);
-
-            gameFields[x, y] = GameFields.Food;
-            graphics.DrawImage(imageList.Images[1], x * 30, y * 30);
+            InitializeComponent();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -108,19 +51,19 @@ namespace SnakeGame
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    if(directions != Directions.Down)
+                    if (directions != Directions.Down)
                         directions = Directions.Up;
                     break;
                 case Keys.Down:
-                    if(directions != Directions.Up)
+                    if (directions != Directions.Up)
                         directions = Directions.Down;
                     break;
                 case Keys.Left:
-                    if(directions != Directions.Right)
+                    if (directions != Directions.Right)
                         directions = Directions.Left;
                     break;
                 case Keys.Right:
-                    if(directions != Directions.Left)
+                    if (directions != Directions.Left)
                         directions = Directions.Right;
                     break;
 
@@ -143,18 +86,98 @@ namespace SnakeGame
             }
         }
 
-        private void GameOver()
+        private void StartGame(object sender, EventArgs e)
         {
-            timer.Enabled = false;
-            MessageBox.Show("Game Over you noob");
+            gameFields = new GameFields[20, 20];
+            snakeCoord = new SnakeCoord[361];
+            rand = new Random();
+            pictureBox.Image = new Bitmap(600, 600);
+            graphics = Graphics.FromImage(pictureBox.Image);
+            for (int i = 0; i < 20; i++)
+            {
+                graphics.DrawImage(imageList.Images[3], i * 30, 0);
+                graphics.DrawImage(imageList.Images[3], i * 30, 570);
+            }
+
+            for (int i = 1; i < 19; i++)
+            {
+                graphics.DrawImage(imageList.Images[3], 0, i * 30);
+                graphics.DrawImage(imageList.Images[3], 570, i * 30);
+            }
+
+            snakeCoord[0].x = 10;
+            snakeCoord[0].y = 10;
+            snakeCoord[1].x = 10;
+            snakeCoord[1].y = 11;
+            snakeCoord[2].x = 10;
+            snakeCoord[2].y = 12;
+
+            graphics.DrawImage(imageList.Images[2], snakeCoord[0].x * 30, snakeCoord[0].y * 30);
+            graphics.DrawImage(imageList.Images[0], snakeCoord[1].x * 30, snakeCoord[1].y * 30);
+            graphics.DrawImage(imageList.Images[0], snakeCoord[2].x * 30, snakeCoord[0].y * 30);
+
+            gameFields[10, 10] = GameFields.Snake;
+            gameFields[10, 11] = GameFields.Snake;
+            gameFields[10, 12] = GameFields.Snake;
+
+            directions = Directions.Up;
+            SnakeLenght = 3;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Food();
+            }
+
+            timer.Enabled = true;
+            LevelOne.Enabled = false;
+            LevelTwo.Enabled = false;
+            LevelThree.Enabled = false;
+            StartButton.Enabled = false;
+
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void LevelLent(object sender, EventArgs e)
         {
-            graphics.FillRectangle(Brushes.Silver, snakeCoord[SnakeLenght - 1].x * 30, snakeCoord[SnakeLenght - 1].y * 30, 30, 30);
+            timer.Interval = 300;
+            LevelOne.Enabled = false;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = true;
+
+        }
+
+        private void LevelRapide(object sender, EventArgs e)
+        {
+            timer.Interval = 100;
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = false;
+            LevelThree.Enabled = true;
+
+        }
+
+        private void LevelUltraRapide(object sender, EventArgs e)
+        {
+            timer.Interval = 50;
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = false;
+
+        }
+
+        private void LevelGodMod(object sender, EventArgs e)
+        {
+            timer.Interval = 30;
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = true;
+            GodMod.Enabled = false;
+        }
+
+        private void GameTimer(object sender, EventArgs e)
+        {
+            graphics.FillRectangle(Brushes.Lime, snakeCoord[SnakeLenght - 1].x * 30, snakeCoord[SnakeLenght - 1].y * 30, 30, 30);
             gameFields[snakeCoord[SnakeLenght - 1].x, snakeCoord[SnakeLenght - 1].y] = GameFields.Free;
 
-            for(int i = SnakeLenght; i >= 1; i--)
+            for (int i = SnakeLenght; i >= 1; i--)
             {
                 snakeCoord[i].x = snakeCoord[i - 1].x;
                 snakeCoord[i].y = snakeCoord[i - 1].y;
@@ -197,7 +220,7 @@ namespace SnakeGame
 
 
             //check eat 
-            if(gameFields[snakeCoord[0].x, snakeCoord[0].y] == GameFields.Food)
+            if (gameFields[snakeCoord[0].x, snakeCoord[0].y] == GameFields.Food)
             {
                 graphics.DrawImage(imageList.Images[0], snakeCoord[SnakeLenght].x * 30, snakeCoord[SnakeLenght].y * 30);
                 gameFields[snakeCoord[SnakeLenght].x, snakeCoord[SnakeLenght].y] = GameFields.Snake;
@@ -217,5 +240,30 @@ namespace SnakeGame
             pictureBox.Refresh();
 
         }
+        private void Food()
+        {
+            int x, y;
+
+            do
+            {
+                x = rand.Next(1, 18);
+                y = rand.Next(1, 18);
+            } while (gameFields[x, y] != GameFields.Free);
+
+            gameFields[x, y] = GameFields.Food;
+            graphics.DrawImage(imageList.Images[1], x * 30, y * 30);
+        }
+
+        private void GameOver()
+        {
+            timer.Enabled = false;
+            MessageBox.Show("Game Over you noob");
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = true;
+            StartButton.Enabled = true;
+        }
+
+
     }
 }

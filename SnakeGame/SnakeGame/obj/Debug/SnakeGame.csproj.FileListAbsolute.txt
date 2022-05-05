@@ -3,7 +3,7 @@ C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGa
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\bin\Debug\SnakeGame.pdb
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.AssemblyReference.cache
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.SuggestedBindingRedirects.cache
-C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.FrmSnake.resources
+C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.Form1.resources
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.Properties.Resources.resources
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.GenerateResource.cache
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.CoreCompileInputs.cache

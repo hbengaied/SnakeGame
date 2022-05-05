@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9826DCEC-645E-47E6-8FCF-411CF86D602F}</ProjectGuid>
+    <ProjectGuid>{BE247C20-F2E8-4E30-933E-40AA0F698F47}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SnakeGame</RootNamespace>
     <AssemblyName>SnakeGame</AssemblyName>
@@ -82,9 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\snake-text.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\snake-text1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
