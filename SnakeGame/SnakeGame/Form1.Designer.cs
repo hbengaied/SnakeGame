@@ -41,6 +41,7 @@
             this.HighScore = new System.Windows.Forms.Label();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.GodMod = new System.Windows.Forms.Button();
+            this.PickDifficult = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +83,7 @@
             // LevelOne
             // 
             this.LevelOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.LevelOne.Location = new System.Drawing.Point(658, 394);
+            this.LevelOne.Location = new System.Drawing.Point(659, 452);
             this.LevelOne.Name = "LevelOne";
             this.LevelOne.Size = new System.Drawing.Size(200, 53);
             this.LevelOne.TabIndex = 1;
@@ -93,7 +94,7 @@
             // LevelTwo
             // 
             this.LevelTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LevelTwo.Location = new System.Drawing.Point(658, 462);
+            this.LevelTwo.Location = new System.Drawing.Point(905, 452);
             this.LevelTwo.Name = "LevelTwo";
             this.LevelTwo.Size = new System.Drawing.Size(200, 53);
             this.LevelTwo.TabIndex = 1;
@@ -104,7 +105,7 @@
             // LevelThree
             // 
             this.LevelThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.LevelThree.Location = new System.Drawing.Point(658, 532);
+            this.LevelThree.Location = new System.Drawing.Point(659, 524);
             this.LevelThree.Name = "LevelThree";
             this.LevelThree.Size = new System.Drawing.Size(200, 53);
             this.LevelThree.TabIndex = 1;
@@ -144,7 +145,7 @@
             // GodMod
             // 
             this.GodMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.GodMod.Location = new System.Drawing.Point(658, 600);
+            this.GodMod.Location = new System.Drawing.Point(905, 524);
             this.GodMod.Name = "GodMod";
             this.GodMod.Size = new System.Drawing.Size(200, 53);
             this.GodMod.TabIndex = 1;
@@ -152,11 +153,22 @@
             this.GodMod.UseVisualStyleBackColor = true;
             this.GodMod.Click += new System.EventHandler(this.LevelGodMod);
             // 
+            // PickDifficult
+            // 
+            this.PickDifficult.AutoSize = true;
+            this.PickDifficult.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.PickDifficult.Location = new System.Drawing.Point(665, 397);
+            this.PickDifficult.Name = "PickDifficult";
+            this.PickDifficult.Size = new System.Drawing.Size(147, 31);
+            this.PickDifficult.TabIndex = 3;
+            this.PickDifficult.Text = "Difficulté :";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1163, 656);
+            this.Controls.Add(this.PickDifficult);
             this.Controls.Add(this.HighScore);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.pictureBox2);
@@ -190,6 +202,7 @@
         private System.Windows.Forms.Label HighScore;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.Button GodMod;
+        private System.Windows.Forms.Label PickDifficult;
     }
 }
 

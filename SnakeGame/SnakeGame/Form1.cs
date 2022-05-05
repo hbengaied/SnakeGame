@@ -34,6 +34,8 @@ namespace SnakeGame
             public int y;
         }
 
+        int point;
+        int highScore;
         GameFields[,] gameFields;
         SnakeCoord[] snakeCoord;
         int SnakeLenght;
@@ -88,6 +90,8 @@ namespace SnakeGame
 
         private void StartGame(object sender, EventArgs e)
         {
+            point = 0;
+            Score.Text = "Score :" + point;
             gameFields = new GameFields[20, 20];
             snakeCoord = new SnakeCoord[361];
             rand = new Random();
@@ -98,12 +102,23 @@ namespace SnakeGame
                 graphics.DrawImage(imageList.Images[3], i * 30, 0);
                 graphics.DrawImage(imageList.Images[3], i * 30, 570);
             }
+            //for (int i = 12; i < 20; i++)
+            //{
+            //    graphics.DrawImage(imageList.Images[3], i * 30, 0);
+            //    graphics.DrawImage(imageList.Images[3], i * 30, 570);
+            //}
 
             for (int i = 1; i < 19; i++)
             {
                 graphics.DrawImage(imageList.Images[3], 0, i * 30);
                 graphics.DrawImage(imageList.Images[3], 570, i * 30);
             }
+
+            //for (int i = 12; i < 19; i++)
+            //{
+            //    graphics.DrawImage(imageList.Images[3], 0, i * 30);
+            //    graphics.DrawImage(imageList.Images[3], 570, i * 30);
+            //}
 
             snakeCoord[0].x = 10;
             snakeCoord[0].y = 10;
@@ -133,6 +148,7 @@ namespace SnakeGame
             LevelTwo.Enabled = false;
             LevelThree.Enabled = false;
             StartButton.Enabled = false;
+            GodMod.Enabled = false;
 
         }
 
@@ -142,6 +158,8 @@ namespace SnakeGame
             LevelOne.Enabled = false;
             LevelTwo.Enabled = true;
             LevelThree.Enabled = true;
+            GodMod.Enabled = true ;
+            PickDifficult.Text = "Difficulté : " + "Lent"; 
 
         }
 
@@ -151,6 +169,8 @@ namespace SnakeGame
             LevelOne.Enabled = true;
             LevelTwo.Enabled = false;
             LevelThree.Enabled = true;
+            GodMod.Enabled = true;
+            PickDifficult.Text = "Difficulté : " + "Rapide";
 
         }
 
@@ -160,6 +180,8 @@ namespace SnakeGame
             LevelOne.Enabled = true;
             LevelTwo.Enabled = true;
             LevelThree.Enabled = false;
+            GodMod.Enabled = true;
+            PickDifficult.Text = "Difficulté : " + "Ultra Rapide";
 
         }
 
@@ -170,7 +192,10 @@ namespace SnakeGame
             LevelTwo.Enabled = true;
             LevelThree.Enabled = true;
             GodMod.Enabled = false;
+            PickDifficult.Text = "Difficulté : " + "Dod Mod";
         }
+
+
 
         private void GameTimer(object sender, EventArgs e)
         {
@@ -203,6 +228,24 @@ namespace SnakeGame
                     break;
             }
 
+            //Hit a wall
+
+            /*
+             Pour le passage :
+
+                En haut 
+                    graphics.FillRectangle(Brushes.Black, 8 * 30, 0 * 30, 30, 30);
+
+                A Gauche
+                    graphics.FillRectangle(Brushes.Black, 0 * 30, 8 * 30, 30, 30);
+
+                A Droite
+                    graphics.FillRectangle(Brushes.Black, 19 * 30, 8 * 30, 30, 30);
+
+                En bas
+                    graphics.FillRectangle(Brushes.Black, 8 * 30, 0 * 30, 30, 30);
+             */
+
             if (snakeCoord[0].x < 1 || snakeCoord[0].x > 18 || snakeCoord[0].y < 1 || snakeCoord[0].y > 18)
             {
                 GameOver();
@@ -225,11 +268,11 @@ namespace SnakeGame
                 graphics.DrawImage(imageList.Images[0], snakeCoord[SnakeLenght].x * 30, snakeCoord[SnakeLenght].y * 30);
                 gameFields[snakeCoord[SnakeLenght].x, snakeCoord[SnakeLenght].y] = GameFields.Snake;
                 SnakeLenght++;
+                point++;
+                Score.Text = "Score : " + point;
 
                 if (SnakeLenght < 350)
                     Food();
-
-                this.Text = "Snake - score" + SnakeLenght;
 
             }
 
@@ -262,6 +305,12 @@ namespace SnakeGame
             LevelTwo.Enabled = true;
             LevelThree.Enabled = true;
             StartButton.Enabled = true;
+            GodMod.Enabled = true;
+            if (point > highScore)
+            {
+                highScore = point;
+                HighScore.Text = "High Score : " + highScore;
+            }
         }
 
 
