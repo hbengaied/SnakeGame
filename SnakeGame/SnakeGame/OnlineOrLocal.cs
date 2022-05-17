@@ -25,8 +25,8 @@ namespace SnakeGame
 
         private void JouerLocal(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
+            LocalGame local = new LocalGame();
+            local.Show();
         }
     }
 }

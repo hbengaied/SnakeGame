@@ -34,14 +34,9 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.StartButton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.LevelOne = new System.Windows.Forms.Button();
-            this.LevelTwo = new System.Windows.Forms.Button();
-            this.LevelThree = new System.Windows.Forms.Button();
             this.Score = new System.Windows.Forms.Label();
             this.HighScore = new System.Windows.Forms.Label();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.GodMod = new System.Windows.Forms.Button();
-            this.PickDifficult = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -80,39 +75,6 @@
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
-            // LevelOne
-            // 
-            this.LevelOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.LevelOne.Location = new System.Drawing.Point(659, 452);
-            this.LevelOne.Name = "LevelOne";
-            this.LevelOne.Size = new System.Drawing.Size(200, 53);
-            this.LevelOne.TabIndex = 1;
-            this.LevelOne.Text = "Lent";
-            this.LevelOne.UseVisualStyleBackColor = true;
-            this.LevelOne.Click += new System.EventHandler(this.LevelLent);
-            // 
-            // LevelTwo
-            // 
-            this.LevelTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LevelTwo.Location = new System.Drawing.Point(905, 452);
-            this.LevelTwo.Name = "LevelTwo";
-            this.LevelTwo.Size = new System.Drawing.Size(200, 53);
-            this.LevelTwo.TabIndex = 1;
-            this.LevelTwo.Text = "Rapide";
-            this.LevelTwo.UseVisualStyleBackColor = true;
-            this.LevelTwo.Click += new System.EventHandler(this.LevelRapide);
-            // 
-            // LevelThree
-            // 
-            this.LevelThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.LevelThree.Location = new System.Drawing.Point(659, 524);
-            this.LevelThree.Name = "LevelThree";
-            this.LevelThree.Size = new System.Drawing.Size(200, 53);
-            this.LevelThree.TabIndex = 1;
-            this.LevelThree.Text = "Ultra Rapide";
-            this.LevelThree.UseVisualStyleBackColor = true;
-            this.LevelThree.Click += new System.EventHandler(this.LevelUltraRapide);
-            // 
             // Score
             // 
             this.Score.AutoSize = true;
@@ -142,45 +104,20 @@
             this.imageList.Images.SetKeyName(2, "head.png");
             this.imageList.Images.SetKeyName(3, "wall.png");
             // 
-            // GodMod
-            // 
-            this.GodMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.GodMod.Location = new System.Drawing.Point(905, 524);
-            this.GodMod.Name = "GodMod";
-            this.GodMod.Size = new System.Drawing.Size(200, 53);
-            this.GodMod.TabIndex = 1;
-            this.GodMod.Text = "God Mod";
-            this.GodMod.UseVisualStyleBackColor = true;
-            this.GodMod.Click += new System.EventHandler(this.LevelGodMod);
-            // 
-            // PickDifficult
-            // 
-            this.PickDifficult.AutoSize = true;
-            this.PickDifficult.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.PickDifficult.Location = new System.Drawing.Point(665, 397);
-            this.PickDifficult.Name = "PickDifficult";
-            this.PickDifficult.Size = new System.Drawing.Size(147, 31);
-            this.PickDifficult.TabIndex = 3;
-            this.PickDifficult.Text = "Difficulté :";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1163, 656);
-            this.Controls.Add(this.PickDifficult);
             this.Controls.Add(this.HighScore);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.GodMod);
-            this.Controls.Add(this.LevelThree);
-            this.Controls.Add(this.LevelOne);
-            this.Controls.Add(this.LevelTwo);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExiteGame);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -195,14 +132,9 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button LevelOne;
-        private System.Windows.Forms.Button LevelTwo;
-        private System.Windows.Forms.Button LevelThree;
         private System.Windows.Forms.Label Score;
         private System.Windows.Forms.Label HighScore;
         private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.Button GodMod;
-        private System.Windows.Forms.Label PickDifficult;
     }
 }
 

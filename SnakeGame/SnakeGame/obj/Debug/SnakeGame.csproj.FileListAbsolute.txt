@@ -11,3 +11,4 @@ C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGa
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.pdb
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.Form2.resources
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.OnlineOrLocal.resources
+C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.LocalGame.resources

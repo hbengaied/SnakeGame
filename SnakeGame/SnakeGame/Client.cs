@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Text;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 
 namespace SnakeGame
 {
-    /* La classe AsyncServer et Client utilisent les méthodes asynchrones de la classe Socket. En effet, les méthodes
-    * concernant la communication réseau (connexion, récéption, envoi, acceptation, etc...) peuvent prendre du temps, ou
-    * même être totalement bloquantes car elles dépendent de ce qui se passe à l'autre bout de la communication. Afin
-    * d'éviter que l'application se fige en attendant une réponse du réseau, on exécute ces fonctions dans un thread 
-    * séparé. Comme on ne peut plus prévoir le moment où ces fonctions s'exécutent, on utilise le déclenchement d'events
-    * pour en avertir les classes "abonnées".
-    * En pratique on exécute une méthode "Begin..." de la classe Socket qui exécutera une méthode "callback" dans un nouveau
-    * thread, dans laquelle on exécute la méthode, lente ou blocante, "End...".
-    */
     public class Client
     {
-        /* La classe Client a été créée pour simplifier la gestion des connexion grâce à la mise à disposition
+        /* La classe AsyncClient a été créée pour simplifier la gestion des connexion grâce à la mise à disposition
          * d'events. Elle repose entièrement sur la classe Socket. Elle s'occupe principalement de l'envoi et la réception 
          * de données. Elle est utilisée dans la classe AsyncServer pour représenter les clients connéctés.
          * A titre d'exemple on déclare ses propres delegates. On aurait très bien pu se contenter des delegates existants
@@ -41,14 +32,14 @@ namespace SnakeGame
 
         public Socket ClientSocket { get { return clientSocket; } set { clientSocket = value; } }
 
+        public String username { get; set; }
+
         private Socket clientSocket;
 
-        public string username { get; set; }
-
         #region Constructors
-        /* La construction d'un Client revient à instancier un objet Socket sur lequel se fera la connexion et 
+        /* La construction d'un AsyncClient revient à instancier un objet Socket sur lequel se fera la connexion et 
          * l'échange de connées. Il faudra attendre l'appel à la méthode Connect avant de commencer l'échange de données.
-         * Si la construction se fait à partir d'un soket ou d'un autre Client, on tente tout de suite la réception 
+         * Si la construction se fait à partir d'un soket ou d'un autre AsyncClient, on tente tout de suite la réception 
          * de données, au cas ou la connexion était déjà établie.
          */
         public Client()
@@ -129,9 +120,6 @@ namespace SnakeGame
             mem.Close();
             return buffer;
         }
-
-        #region Callbacks
-
         private void clientConnectedCallback(IAsyncResult ar)
         {
             /* On tente de se connecter au serveur. Si la connexion est établie, on démarre la réception de 
@@ -210,7 +198,6 @@ namespace SnakeGame
                 }
             }
         }
-        #endregion
 
         #region Raising event methods
 
@@ -259,7 +246,7 @@ namespace SnakeGame
             }
         }
 
-        private void onClientConnected(Client Client)
+        private void onClientConnected(Client asyncClient)
         {
             if (ClientConnected != null)
             {
@@ -274,7 +261,7 @@ namespace SnakeGame
             }
         }
 
-        private void onDataSent(Client Client)
+        private void onDataSent(Client asyncClient)
         {
             if (DataSent != null)
             {
@@ -289,7 +276,6 @@ namespace SnakeGame
             }
         }
         #endregion
-
-
     }
+
 }

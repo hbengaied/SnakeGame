@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SnakeGame
 {
-    public partial class Form1 : Form
+    public partial class LocalGame : Form
     {
         Client remoteServer;
-        string serverIp;
+        String serverIp;
         int serverPort;
 
         Random rand;
@@ -46,48 +46,10 @@ namespace SnakeGame
         Directions directions;
         Graphics graphics;
 
-        public Form1()
+        public LocalGame()
         {
             WindowState = FormWindowState.Maximized;
             InitializeComponent();
-        }
-
-        public Form1(string ip, int port, String username) : this()
-        {
-            remoteServer = new Client();
-
-            remoteServer.DataReceived += RemoteServer_DataReceived;
-            remoteServer.ConnectionRefused += RemoteServer_ConnectionRefused;
-            remoteServer.username = username;
-            serverIp = ip;
-            serverPort = port;
-        }
-
-        private void RemoteServer_ConnectionRefused(Client client, string message)
-        {
-            /* Cette fonction sera exécutée si on essaie de se connecter au serveur alors qu'il est éteint.
-             * Dans ce cas on affiche le message dans un MessageBox et on ferme la fenêtre.
-             * L'objet MessageBox permet d'avoir une fenêtre de dialogue standard utilisées dans toutes
-             * les applications windows pour informer l'utilisateur de l'application. On évite ainsi de devoir
-             * créer une nouvelle WindowForm pour ce type de tâches très courantes.
-             */
-
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            this.Close();
-        }
-
-        private void RemoteServer_DataReceived(Client client, object data)
-        {
-            /* Lorsequ' on recoit des données du serveur, ces données contiennent les informations d'une forme (MovingShapeInfo).
-             * On crée une nouvelle forme à partir de ses informations, et on veille à ce que sa position en X soit à 0 (à gauche).
-             */
-            String message = (String)data;
-        }
-
-        private void GamePage_FormClosing(object sender, FormClosedEventArgs e)
-        {
-            remoteServer.Disconnect();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -183,8 +145,55 @@ namespace SnakeGame
             }
 
             timer.Enabled = true;
+            LevelOne.Enabled = false;
+            LevelTwo.Enabled = false;
+            LevelThree.Enabled = false;
             StartButton.Enabled = false;
+            GodMod.Enabled = false;
 
+        }
+
+        private void LevelLent(object sender, EventArgs e)
+        {
+            timer.Interval = 300;
+            LevelOne.Enabled = false;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = true;
+            GodMod.Enabled = true;
+            PickDifficult.Text = "Difficulté : " + "Lent";
+
+        }
+
+        private void LevelRapide(object sender, EventArgs e)
+        {
+            timer.Interval = 100;
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = false;
+            LevelThree.Enabled = true;
+            GodMod.Enabled = true;
+            PickDifficult.Text = "Difficulté : " + "Rapide";
+
+        }
+
+        private void LevelUltraRapide(object sender, EventArgs e)
+        {
+            timer.Interval = 50;
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = false;
+            GodMod.Enabled = true;
+            PickDifficult.Text = "Difficulté : " + "Ultra Rapide";
+
+        }
+
+        private void LevelGodMod(object sender, EventArgs e)
+        {
+            timer.Interval = 30;
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = true;
+            GodMod.Enabled = false;
+            PickDifficult.Text = "Difficulté : " + "Dod Mod";
         }
 
 
@@ -275,17 +284,16 @@ namespace SnakeGame
         {
             timer.Enabled = false;
             MessageBox.Show("Game Over you noob");
+            LevelOne.Enabled = true;
+            LevelTwo.Enabled = true;
+            LevelThree.Enabled = true;
             StartButton.Enabled = true;
+            GodMod.Enabled = true;
             if (point > highScore)
             {
                 highScore = point;
                 HighScore.Text = "High Score : " + highScore;
-            }   
-        }
-
-        private void ExiteGame(object sender, FormClosedEventArgs e)
-        {
-            remoteServer.Disconnect();
+            }
         }
     }
 }

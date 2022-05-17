@@ -84,38 +84,9 @@ namespace SnakeGame
 
         private void RemoteClient_DataReceived(Client client, object data)
         {
-            /* Lorse que le serveur reçoit de données, celui doit les transmettre au prochain client. L'ordre des clients dans la liste
-             * remoteClients correspond à l'ordre par lesquelles doivent passer chaque forme. On pourrait donc tout simplement envoyer
-             * les données au client ayant l'indice du client d'ou provient les données (client source) + 1. Ceci pose problème lorse 
-             * que le client source est le dernier de la liste. Dans ce cas il faut transmettre les données au premier client de la liste
-             * (la forme vient de faire le tour du monde...), sinon une erreur "index out of bounds" est levée.
-             * Une manière élégante de calculer cet indice consiste à prendre comme indice le reste de la division entière de l'indice du 
-             * client source +1 par le nombre de clients connectés.
-             */
-            int nextClientIndex = (remoteClients.IndexOf(client) + 1) % remoteClients.Count;
-            String ok = (String)data;
-            if (ok == "start")
-            {
-                nbPlayersReady++;
-                //ready_label.Text = "Joueurs prêts : " + playersReady;
-                if (nbPlayersReady > 0)
-                {
-                    if (!gameStarted)
-                    {
-                        //timer.Mode = TimerMode.START_GAME;
-                        //timer.ThresholdReached += TimerEvent_startGame;
-                        //timer.Start();
-                        //gameStarted = true;
-                    }
-                }
-            }
 
-            //ici ce sera si y a plus aucun joueur en vie on arrete le jeu
-            else if (ok == "bingo")
-            {
-                //timer.Stop();
-                //remoteClients[nextClientIndex].Send(client.username);
-            }
+            String zebi = (String)data;
+            label1.Text = zebi;
         }
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -133,9 +104,10 @@ namespace SnakeGame
                 
                 listBox1.Items.Add(textBox1.Text);
                 textBox1.Clear();
-                Form1 form1 = new Form1();
+                Form1 form1 = new Form1("127.0.0.1", 9999, textBox1.Text);
                 form1.Show();
             }
+
         }
     }
 }
