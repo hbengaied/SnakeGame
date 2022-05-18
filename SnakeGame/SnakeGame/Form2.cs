@@ -15,7 +15,11 @@ namespace SnakeGame
     {
         Server server;
 
+        int ServerPort;
+        String IpAdress;
+
         String username;
+        Form1 form;
 
         List<Client> remoteClients = new List<Client>();
 
@@ -28,9 +32,7 @@ namespace SnakeGame
         {
             InitializeComponent();
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            server = new Server("127.0.0.1", 9999);
-            server.ClientAccepted += Server_ClientAccepted;
-            server.Start();
+            
             
         }
 
@@ -95,12 +97,14 @@ namespace SnakeGame
             }else
             {
                 // ici sinon il recoit le blase des perdants
-                nbPerdants++;
                 listBoxClassement.Items.Add(nbPerdants+ " "+zebi);
+                nbPerdants--;
             }
 
             if (nbPlayersReady > 1 && nbPlayersReady == remoteClients.Count)
             {
+                Console.WriteLine("Il y a {0} joueurs", nbPlayersReady);
+                nbPerdants = nbPlayersReady;
                 for(int i = 0; i < remoteClients.Count; i++)
                 {
                     remoteClients[i].Send("GO");
@@ -128,12 +132,28 @@ namespace SnakeGame
                 nbPlayers++;
                 //remoteClients[nbPlayers-1].Send(textBox1.Text);
 
-                Form1 form1 = new Form1("127.0.0.1", 9999, textBox1.Text);
-                form1.Show();
+                //Form1 form1 = new Form1("127.0.0.1", 9999, textBox1.Text);
+                form = new Form1(textBoxIp.Text, Int32.Parse(textBoxPort.Text), textBox1.Text);
+                form.Show();
                 Console.WriteLine("nb de joueur present {0}",remoteClients.Count);
                 textBox1.Clear();
             }
 
+        }
+
+        private void CreateServer(object sender, EventArgs e)
+        {
+            if((textBoxIp.Text == "" || textBoxIp.Text == " ") && (textBoxPort.Text == "" || textBoxPort.Text == " "))
+            {
+                MessageBox.Show("Merci de mettre une adresse un port valide et un Pseudo valide");
+            }
+            else
+            {
+                server = new Server(textBoxIp.Text, Int32.Parse(textBoxPort.Text));
+                server.ClientAccepted += Server_ClientAccepted;
+                server.Start();
+                buttonServeur.Visible = false;
+            }
         }
     }
 }
