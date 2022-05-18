@@ -35,8 +35,8 @@
             this.StartButton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Score = new System.Windows.Forms.Label();
-            this.HighScore = new System.Windows.Forms.Label();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.NamePlayer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -44,9 +44,10 @@
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.Lime;
-            this.pictureBox.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox.Location = new System.Drawing.Point(18, 18);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(600, 600);
+            this.pictureBox.Size = new System.Drawing.Size(900, 923);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
@@ -58,9 +59,10 @@
             // 
             this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(658, 223);
+            this.StartButton.Location = new System.Drawing.Point(987, 343);
+            this.StartButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(463, 53);
+            this.StartButton.Size = new System.Drawing.Size(694, 82);
             this.StartButton.TabIndex = 1;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = false;
@@ -69,9 +71,10 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = global::SnakeGame.Properties.Resources.snake_text;
-            this.pictureBox2.Location = new System.Drawing.Point(658, 40);
+            this.pictureBox2.Location = new System.Drawing.Point(987, 62);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(463, 157);
+            this.pictureBox2.Size = new System.Drawing.Size(694, 242);
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
@@ -79,21 +82,12 @@
             // 
             this.Score.AutoSize = true;
             this.Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.Score.Location = new System.Drawing.Point(665, 291);
+            this.Score.Location = new System.Drawing.Point(998, 448);
+            this.Score.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Score.Name = "Score";
-            this.Score.Size = new System.Drawing.Size(107, 31);
+            this.Score.Size = new System.Drawing.Size(157, 47);
             this.Score.TabIndex = 3;
             this.Score.Text = "Score :";
-            // 
-            // HighScore
-            // 
-            this.HighScore.AutoSize = true;
-            this.HighScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.HighScore.Location = new System.Drawing.Point(665, 338);
-            this.HighScore.Name = "HighScore";
-            this.HighScore.Size = new System.Drawing.Size(175, 31);
-            this.HighScore.TabIndex = 3;
-            this.HighScore.Text = "High Score :";
             // 
             // imageList
             // 
@@ -104,20 +98,31 @@
             this.imageList.Images.SetKeyName(2, "head.png");
             this.imageList.Images.SetKeyName(3, "wall.png");
             // 
+            // NamePlayer
+            // 
+            this.NamePlayer.AutoSize = true;
+            this.NamePlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.NamePlayer.Location = new System.Drawing.Point(998, 530);
+            this.NamePlayer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.NamePlayer.Name = "NamePlayer";
+            this.NamePlayer.Size = new System.Drawing.Size(285, 71);
+            this.NamePlayer.TabIndex = 3;
+            this.NamePlayer.Text = "Pseudo :";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1163, 656);
-            this.Controls.Add(this.HighScore);
+            this.ClientSize = new System.Drawing.Size(1744, 1009);
+            this.Controls.Add(this.NamePlayer);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExiteGame);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -133,8 +138,8 @@
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label Score;
-        private System.Windows.Forms.Label HighScore;
         private System.Windows.Forms.ImageList imageList;
+        private System.Windows.Forms.Label NamePlayer;
     }
 }
 

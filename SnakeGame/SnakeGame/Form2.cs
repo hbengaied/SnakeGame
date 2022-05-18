@@ -15,11 +15,13 @@ namespace SnakeGame
     {
         Server server;
 
-        string username;
+        String username;
 
         List<Client> remoteClients = new List<Client>();
 
         int nbPlayersReady = 0;
+        int nbPlayers = 0;
+        int nbPerdants = 0;
 
         bool gameStarted = false ;
         public Form2()
@@ -65,7 +67,7 @@ namespace SnakeGame
             listBox1.Items.RemoveAt(clientToRemoveIndex);
         }
 
-        private void RemoteClient_ClientDisconnected(Client client, string message)
+        private void RemoteClient_ClientDisconnected(Client client, String message)
         {
             remoteClients.Remove(client);
             removeClientFromListBox(client);
@@ -86,7 +88,27 @@ namespace SnakeGame
         {
 
             String zebi = (String)data;
-            label1.Text = zebi;
+            //label1.Text = zebi;
+            if (zebi == "start")
+            {
+                nbPlayersReady++;
+            }else
+            {
+                // ici sinon il recoit le blase des perdants
+                nbPerdants++;
+                listBoxClassement.Items.Add(nbPerdants+ " "+zebi);
+            }
+
+            if (nbPlayersReady > 1 && nbPlayersReady == remoteClients.Count)
+            {
+                for(int i = 0; i < remoteClients.Count; i++)
+                {
+                    remoteClients[i].Send("GO");
+                    gameStarted = true;
+                    nbPlayersReady = 0;
+
+                }
+            }
         }
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -103,9 +125,13 @@ namespace SnakeGame
             {
                 
                 listBox1.Items.Add(textBox1.Text);
-                textBox1.Clear();
+                nbPlayers++;
+                //remoteClients[nbPlayers-1].Send(textBox1.Text);
+
                 Form1 form1 = new Form1("127.0.0.1", 9999, textBox1.Text);
                 form1.Show();
+                Console.WriteLine("nb de joueur present {0}",remoteClients.Count);
+                textBox1.Clear();
             }
 
         }

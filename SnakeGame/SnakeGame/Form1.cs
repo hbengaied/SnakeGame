@@ -13,8 +13,9 @@ namespace SnakeGame
     public partial class Form1 : Form
     {
         Client remoteServer;
-        string serverIp;
+        String serverIp;
         int serverPort;
+        String pseudo;
 
         Random rand;
         enum GameFields
@@ -39,7 +40,6 @@ namespace SnakeGame
         }
 
         int point;
-        int highScore;
         GameFields[,] gameFields;
         SnakeCoord[] snakeCoord;
         int SnakeLenght;
@@ -52,18 +52,19 @@ namespace SnakeGame
             InitializeComponent();
         }
 
-        public Form1(string ip, int port, String username) : this()
+        public Form1(String ip, int port, String username) : this()
         {
             remoteServer = new Client();
 
             remoteServer.DataReceived += RemoteServer_DataReceived;
             remoteServer.ConnectionRefused += RemoteServer_ConnectionRefused;
             remoteServer.username = username;
+            pseudo = username;
             serverIp = ip;
             serverPort = port;
         }
 
-        private void RemoteServer_ConnectionRefused(Client client, string message)
+        private void RemoteServer_ConnectionRefused(Client client, String message)
         {
             /* Cette fonction sera exécutée si on essaie de se connecter au serveur alors qu'il est éteint.
              * Dans ce cas on affiche le message dans un MessageBox et on ferme la fenêtre.
@@ -83,6 +84,14 @@ namespace SnakeGame
              * On crée une nouvelle forme à partir de ses informations, et on veille à ce que sa position en X soit à 0 (à gauche).
              */
             String message = (String)data;
+            if(message == "GO")
+            {
+                timer.Enabled = true;
+            }
+            //else
+            //{
+            //    listBoxClassement.Items.Add(message);
+            //}
         }
 
         private void GamePage_FormClosing(object sender, FormClosedEventArgs e)
@@ -135,6 +144,8 @@ namespace SnakeGame
 
             if (remoteServer != null)
             {
+
+                Console.WriteLine(remoteServer.username);
                 if (remoteServer.ClientSocket.Connected)
                 {
                     remoteServer.Send("start");
@@ -182,7 +193,7 @@ namespace SnakeGame
                 Food();
             }
 
-            timer.Enabled = true;
+            //timer.Enabled = true;
             StartButton.Enabled = false;
 
         }
@@ -274,18 +285,61 @@ namespace SnakeGame
         private void GameOver()
         {
             timer.Enabled = false;
+            remoteServer.Send(pseudo);
             MessageBox.Show("Game Over you noob");
             StartButton.Enabled = true;
-            if (point > highScore)
-            {
-                highScore = point;
-                HighScore.Text = "High Score : " + highScore;
-            }   
         }
 
         private void ExiteGame(object sender, FormClosedEventArgs e)
         {
             remoteServer.Disconnect();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            remoteServer.Connect(serverIp, serverPort);
+            NamePlayer.Text ="Pseudo : " + pseudo;
+            point = 0;
+            Score.Text = "Score :" + point;
+            gameFields = new GameFields[20, 20];
+            snakeCoord = new SnakeCoord[361];
+            rand = new Random();
+            pictureBox.Image = new Bitmap(600, 600);
+            graphics = Graphics.FromImage(pictureBox.Image);
+            for (int i = 0; i < 20; i++)
+            {
+                graphics.DrawImage(imageList.Images[3], i * 30, 0);
+                graphics.DrawImage(imageList.Images[3], i * 30, 570);
+            }
+
+            for (int i = 1; i < 19; i++)
+            {
+                graphics.DrawImage(imageList.Images[3], 0, i * 30);
+                graphics.DrawImage(imageList.Images[3], 570, i * 30);
+            }
+
+            snakeCoord[0].x = 10;
+            snakeCoord[0].y = 10;
+            snakeCoord[1].x = 10;
+            snakeCoord[1].y = 11;
+            snakeCoord[2].x = 10;
+            snakeCoord[2].y = 12;
+
+            graphics.DrawImage(imageList.Images[2], snakeCoord[0].x * 30, snakeCoord[0].y * 30);
+            graphics.DrawImage(imageList.Images[0], snakeCoord[1].x * 30, snakeCoord[1].y * 30);
+            graphics.DrawImage(imageList.Images[0], snakeCoord[2].x * 30, snakeCoord[0].y * 30);
+
+            gameFields[10, 10] = GameFields.Snake;
+            gameFields[10, 11] = GameFields.Snake;
+            gameFields[10, 12] = GameFields.Snake;
+
+            directions = Directions.Up;
+            SnakeLenght = 3;
+
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Food();
+            //}
         }
     }
 }
