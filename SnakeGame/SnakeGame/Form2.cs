@@ -20,6 +20,7 @@ namespace SnakeGame
 
         String username;
         Form1 form;
+        bool Create = false;
 
         List<Client> remoteClients = new List<Client>();
 
@@ -83,7 +84,11 @@ namespace SnakeGame
                 client.ClientDisconnected -= RemoteClient_ClientDisconnected;
                 client.Disconnect();
             }
-            server.Stop();
+            if(Create == true)
+            {
+
+                server.Stop();
+            }
         }
 
         private void RemoteClient_DataReceived(Client client, object data)
@@ -97,8 +102,12 @@ namespace SnakeGame
             }else
             {
                 // ici sinon il recoit le blase des perdants
-                listBoxClassement.Items.Add(nbPerdants+ " "+zebi);
+                String place = nbPerdants + " " + zebi;
                 nbPerdants--;
+                for(int i = 0; i < remoteClients.Count; i++)
+                {
+                    remoteClients[i].Send(place);
+                }
             }
 
             if (nbPlayersReady > 1 && nbPlayersReady == remoteClients.Count)
@@ -114,18 +123,17 @@ namespace SnakeGame
                 }
             }
         }
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void StartGame(object sender, EventArgs e)
         {
-            if(textBox1.Text ==  "" || textBox1.Text == " ")
+            if(String.IsNullOrEmpty(textBox1.Text) || listBox1.Items.Contains(textBox1.Text))
             {
-                MessageBox.Show(" Vous devez entrer un nom d'utilisateur");
+                MessageBox.Show(" Vous devez entrer un nom d'utilisateur valide ou qui ne soit pas déjà utilisé");
+            }else if (String.IsNullOrEmpty(textBoxIp.Text) && String.IsNullOrEmpty(textBoxPort.Text))
+            {
+                MessageBox.Show("Merci de renseigner un port ouune adress IP");
             }
-            else if(textBox1.Text.Length > 0 && textBox1.Text != " ")
+            else if(textBox1.Text.Length > 0 && !String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBoxIp.Text) && !String.IsNullOrEmpty(textBoxPort.Text))
             {
                 
                 listBox1.Items.Add(textBox1.Text);
@@ -153,6 +161,7 @@ namespace SnakeGame
                 server.ClientAccepted += Server_ClientAccepted;
                 server.Start();
                 buttonServeur.Visible = false;
+                Create = true;
             }
         }
     }

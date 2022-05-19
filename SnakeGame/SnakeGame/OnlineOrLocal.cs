@@ -19,7 +19,7 @@ namespace SnakeGame
 
         private void JouerOnline(object sender, EventArgs e)
         {
-            Form2 form = new Form2();
+            CreateOrJoinServer form = new CreateOrJoinServer();
             form.Show();
         }
 

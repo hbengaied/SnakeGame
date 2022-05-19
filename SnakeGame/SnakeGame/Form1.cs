@@ -86,12 +86,13 @@ namespace SnakeGame
             String message = (String)data;
             if(message == "GO")
             {
+                listBoxClassement.Items.Clear();
                 timer.Enabled = true;
             }
-            //else
-            //{
-            //    listBoxClassement.Items.Add(message);
-            //}
+            else
+            {
+                listBoxClassement.Items.Add(message);
+            }
         }
 
         private void GamePage_FormClosing(object sender, FormClosedEventArgs e)
