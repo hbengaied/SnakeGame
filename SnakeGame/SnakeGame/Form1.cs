@@ -13,8 +13,8 @@ namespace SnakeGame
     public partial class Form1 : Form
     {
         Client remoteServer;
-        String serverIp = "192.168.1.21";
-        int serverPort = 9999;
+        String serverIp;
+        int serverPort;
         String pseudo;
 
         Random rand;
