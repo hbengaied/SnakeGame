@@ -4,7 +4,7 @@ BEN GAIED Hicheme
 
 ## Jouer Solo
 
-Vous pouvez jouer en solo en choisissant le mode de jeu "Local"
+Vous pouvez jouer en solo en choisissant le mode de jeu **"Local"**
 ![](Image/Mode.png)
 
 Une nouvelle page va s'ouvrir, vous pouvez également sélectionner la difficulté du jeu en choisissant la vitesse. Pour lancer le jeu il suiffit de cliquer sur **"Start"**.
@@ -29,3 +29,19 @@ Ensuite vous devez les communiquer aux personnes avec qui vous voulez jouer.
 
 Pour rejoindre un serveur il faut l'adresse Ip et un Port de ce serveur et votre nom d'utilisateur  et puis cliquer sur **"Lancer le jeu **!
 ![](Image/Rejoindre.png)
+
+
+## Début du jeu !
+
+Le jeu ce lance quand les joueurs seront tous prêt, pour cela ils fout que les joueurs cliquent tous sur le bouton **"Start"**
+![](Image/EnLigneMode.png)
+
+Le jeu se termine quand il ne reste plus aucun joueur en vie.
+Il y aura un système de classement à la fin de la partie. Le gagnant sera celui qui sera resté en vie le plus longtemps.
+
+## Comment jouer 
+
+* Z - Vers le haut
+* Q - Tourner à gauche
+* D - Tourner à droite
+* S - Vers le bas
