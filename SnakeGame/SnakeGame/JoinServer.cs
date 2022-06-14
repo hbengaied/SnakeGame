@@ -16,12 +16,6 @@ namespace SnakeGame
         Form1 form;
 
         List<Client> remoteClients = new List<Client>();
-
-        //int nbPlayersReady = 0;
-        //int nbPlayers = 0;
-        //int nbPerdants = 0;
-
-        //bool gameStarted = false;
         public JoinServer()
         {
             InitializeComponent();
@@ -32,7 +26,6 @@ namespace SnakeGame
         private void RemoteClient_ClientDisconnected(Client client, String message)
         {
             remoteClients.Remove(client);
-            //updateClientCount();
         }
 
 
@@ -48,7 +41,6 @@ namespace SnakeGame
             }
             else if (textBox1.Text.Length > 0 && !String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBoxIp.Text) && !String.IsNullOrEmpty(textBoxPort.Text))
             {
-                //nbPlayers++;
                 form = new Form1(textBoxIp.Text, Int32.Parse(textBoxPort.Text), textBox1.Text);
                 form.Show();
                 textBox1.Clear();

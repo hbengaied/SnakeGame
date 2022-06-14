@@ -169,8 +169,6 @@ namespace SnakeGame
 
             if (remoteServer != null)
             {
-
-                Console.WriteLine(remoteServer.username);
                 //Quand un joueur clic sur le btn start, on envoi un msg start au serveur comme ca il sait que
                 //un joueur est pret ! Dans la partie serveur on fait a une variable nbplayeready qui est
                 //incrementé à chaque clic de start
@@ -345,12 +343,9 @@ namespace SnakeGame
         }
 
 
-        //-------- Si joueur quitte une partie, on envoi au serveur qu'un joueur a deco et son nom
-        // dans le serveur le nbplayer sera --
+        //-------- Si joueur quitte une partie, on envoi au serveur qu'un joueur a deco
         private void ExiteGame(object sender, FormClosedEventArgs e)
         {
-            remoteServer.Send("exit");
-            remoteServer.Send(pseudo);
             remoteServer.Disconnect();
         }
 
