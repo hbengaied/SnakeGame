@@ -40,6 +40,11 @@ namespace SnakeGame
 
             String zebi = (String)data;
             //label1.Text = zebi;
+            if(zebi == "exit")
+            {
+                nbPlayers--;
+            }
+
             if (zebi == "start")
             {
                 nbPlayersReady++;
@@ -55,7 +60,7 @@ namespace SnakeGame
                 }
             }
 
-            if (nbPlayersReady > 0 && nbPlayersReady == remoteClients.Count)
+            if (nbPlayersReady > 0 && nbPlayers == nbPlayersReady /*µnbPlayersReady == remoteClients.Count*/)
             {
                 Console.WriteLine("Il y a {0} joueurs", nbPlayersReady);
                 nbPerdants = nbPlayersReady;

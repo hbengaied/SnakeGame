@@ -293,6 +293,8 @@ namespace SnakeGame
 
         private void ExiteGame(object sender, FormClosedEventArgs e)
         {
+            remoteServer.Send("exit");
+            remoteServer.Send(pseudo);
             remoteServer.Disconnect();
         }
 
