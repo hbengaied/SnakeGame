@@ -12,4 +12,5 @@ C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGa
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.LocalGame.resources
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.CreateOrJoinServer.resources
 C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.JoinServer.resources
-C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\Bloc C\Q2\Labo Traitement Info\SnakeGame\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.SuggestedBindingRedirects.cache

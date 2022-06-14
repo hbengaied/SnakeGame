@@ -17,11 +17,11 @@ namespace SnakeGame
 
         List<Client> remoteClients = new List<Client>();
 
-        int nbPlayersReady = 0;
-        int nbPlayers = 0;
-        int nbPerdants = 0;
+        //int nbPlayersReady = 0;
+        //int nbPlayers = 0;
+        //int nbPerdants = 0;
 
-        bool gameStarted = false;
+        //bool gameStarted = false;
         public JoinServer()
         {
             InitializeComponent();
@@ -35,46 +35,6 @@ namespace SnakeGame
             //updateClientCount();
         }
 
-        private void RemoteClient_DataReceived(Client client, object data)
-        {
-
-            String zebi = (String)data;
-            //label1.Text = zebi;
-            if(zebi == "exit")
-            {
-                Console.WriteLine("-----------------Un joueur a quitté--------------------------");
-                Console.WriteLine(zebi);
-                Console.WriteLine("-------------------------------------------------------------");
-                nbPlayers--;
-            }
-
-            if (zebi == "start")
-            {
-                nbPlayersReady++;
-            }
-            else
-            {
-                // ici sinon il recoit le blase des perdants
-                String place = nbPerdants + " " + zebi;
-                nbPerdants--;
-                for (int i = 0; i < remoteClients.Count; i++)
-                {
-                    remoteClients[i].Send(place);
-                }
-            }
-
-            if (nbPlayersReady > 0 && nbPlayers == nbPlayersReady /*µnbPlayersReady == remoteClients.Count*/)
-            {
-                nbPerdants = nbPlayersReady;
-                for (int i = 0; i < remoteClients.Count; i++)
-                {
-                    remoteClients[i].Send("GO");
-                    gameStarted = true;
-                    nbPlayersReady = 0;
-
-                }
-            }
-        }
 
         private void StartGame(object sender, EventArgs e)
         {
@@ -88,7 +48,7 @@ namespace SnakeGame
             }
             else if (textBox1.Text.Length > 0 && !String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBoxIp.Text) && !String.IsNullOrEmpty(textBoxPort.Text))
             {
-                nbPlayers++;
+                //nbPlayers++;
                 form = new Form1(textBoxIp.Text, Int32.Parse(textBoxPort.Text), textBox1.Text);
                 form.Show();
                 textBox1.Clear();
