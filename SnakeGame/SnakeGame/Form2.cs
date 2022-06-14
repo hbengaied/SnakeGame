@@ -99,6 +99,7 @@ namespace SnakeGame
             if (zebi == "start")
             {
                 nbPlayersReady++;
+    
             }else
             {
                 // ici sinon il recoit le blase des perdants

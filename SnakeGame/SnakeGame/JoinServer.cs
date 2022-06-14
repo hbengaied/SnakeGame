@@ -42,6 +42,9 @@ namespace SnakeGame
             //label1.Text = zebi;
             if(zebi == "exit")
             {
+                Console.WriteLine("-----------------Un joueur a quitté--------------------------");
+                Console.WriteLine(zebi);
+                Console.WriteLine("-------------------------------------------------------------");
                 nbPlayers--;
             }
 
@@ -62,7 +65,6 @@ namespace SnakeGame
 
             if (nbPlayersReady > 0 && nbPlayers == nbPlayersReady /*µnbPlayersReady == remoteClients.Count*/)
             {
-                Console.WriteLine("Il y a {0} joueurs", nbPlayersReady);
                 nbPerdants = nbPlayersReady;
                 for (int i = 0; i < remoteClients.Count; i++)
                 {
@@ -89,7 +91,6 @@ namespace SnakeGame
                 nbPlayers++;
                 form = new Form1(textBoxIp.Text, Int32.Parse(textBoxPort.Text), textBox1.Text);
                 form.Show();
-                Console.WriteLine("nb de joueur present {0}", remoteClients.Count);
                 textBox1.Clear();
             }
 

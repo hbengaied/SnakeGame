@@ -90,6 +90,7 @@ namespace SnakeGame
                 timer.Enabled = true;
             }
             else
+            if(message !="exit")
             {
                 listBoxClassement.Items.Add(message);
             }
@@ -243,7 +244,6 @@ namespace SnakeGame
             {
                 GameOver();
                 pictureBox.Refresh();
-                Console.WriteLine("je me suis mangé");
                 return;
             }
 
@@ -338,11 +338,6 @@ namespace SnakeGame
 
             directions = Directions.Up;
             SnakeLenght = 3;
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    Food();
-            //}
         }
     }
 }
